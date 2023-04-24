@@ -1,8 +1,9 @@
 FROM python:3.9
 
-RUN pip install pandas
+RUN apt_get install wget
+RUN pip install pandas sqlalchemy spycopg2
 
 WORKDIR /app
 
-COPY pipeline.py pipeline.py
-ENTRYPOINT [ "python","pipeline.py" ]
+COPY load-data.py load-data.py
+ENTRYPOINT [ "python","load-data.py" ]

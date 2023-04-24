@@ -1,0 +1,39 @@
+docker run -it\
+-e POSTGRES_USER="root"\
+-e POSTGRES_PASSWORD="root"\
+-e POSTGRES_DB="ny_taxi"\
+-v C:\Users\arsen\sam-proj\Data-Engineering-GCP\docker-1\ny_taxi_postgres:var/lib/postgresql/data\
+-p 5432:5432\
+postgres:13
+
+#to run in windowspowershell
+docker run -it \
+-e POSTGRES_USER="root" \
+-e POSTGRES_PASSWORD="root" \
+-e POSTGRES_DB="ny_taxi" \
+-v "C:\Users\arsen\sam-proj\Data-Engineering-GCP\docker-1\ny_taxi_postgres:/var/lib/postgresql/data" \
+-p 5432:5432 \
+postgres:13
+
+pip install pgcli
+
+conda install -c conda-forge pgcli
+pip install -U mycli
+
+#to connect to the database
+pgcli -h localhost -p 5432 -u root -d ny_taxi
+
+#use pgadmin docker to connect to database
+docker run -it -p 8080:80 \
+    -e PGADMIN_DEFAULT_EMAIL='user@domain.com' \
+    -e PGADMIN_DEFAULT_PASSWORD='root' \
+    --name pgadmin1 \
+    --network pg \
+    dpage/pgadmin4
+
+
+#create a network in docker
+docker network create pg
+#put this in ingest_data
+pip install sqlalchemy psycopg2-binary
+
