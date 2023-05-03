@@ -1,1 +1,1 @@
-pip install pandas sqlalchemy psycopg2 pyarrow
+pip install pandas sqlalchemy psycopg2-binary pyarrow

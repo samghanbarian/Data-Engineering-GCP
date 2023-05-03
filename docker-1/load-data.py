@@ -22,7 +22,7 @@ def main():
 
     os.system(f"wget {url} -O {pq_name}")
     engine = create_engine("postgresql://{user}:{password}@{host}:{port}/{db}")
-    engine.connect()
+    # engine.connect()
 
     # q = """ 
     # select 1 as num
