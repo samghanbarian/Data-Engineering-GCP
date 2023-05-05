@@ -32,21 +32,21 @@ def write_local_df(df:pd.DataFrame, color:str, dataset_file:str) -> Path:
 
 
 @flow(name="load_data")
-def load_data_gcs(color:str="yellow",year:int=2023,month:list[list]=[1,2]):
+def load_data_gcs(color,year,month):
     """ This is the main ETL function"""
     dataset_file =f"{color}_tripdata_{year}-{month:02}"
     dataset_url =f"https://d37ci6vzurychx.cloudfront.net/trip-data/{color}_tripdata_{year}-{month:02}.parquet"
-    df = fetch (dataset_url)
+    df = fetch(dataset_url)
     path = write_local_df(df,color,dataset_file)
     #write_to_gcs(path)
 @flow()
-def parent_flow():
+def parent_flow(color,year,month) -> None:
     """ parent flow to set the params"""
-    color="yellow"
-    year = 2023
-    month = [1,2,3]
     for month in month:
         load_data_gcs(color,year,month)
 
 if __name__ == "__main__":
-    parent_flow()
+    color = "yellow"
+    year = 2022
+    month = [1,2,3]
+    parent_flow(color,year,month)
