@@ -99,8 +99,39 @@ put zeta-de-384407-5956edd4614c.json
 #authenticate ti gcp
 #set credential env for gcp
 ```bash
-export GOOGLE_APPLICATION_CREDENTIALS="~/.gck/zeta-de-384407-5956edd4614c.json"
-gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS #to authenticate to gcloud
-gcloud auth activate-service-account zeta-user@zeta-de-384407.iam.gserviceaccount.com --key-file=/.gck/zeta-de-384407-5956edd4614c.json --project=zeta-de-384407
+export GOOGLE_APPLICATION_CREDENTIALS="home/sam/.gck/zeta-de-384407-5956edd4614c.json"
+gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS #to authenticate to   gcloud
+```
 
+#create enve 
+```bash
+conda create -n prefect-test python=3.9
+conda activate prefect-test # activate the env
+```
+
+install requirements in the env
+```bash 
+pip install -r requirement.txt
+```
+```bash
+prefect orion start #start prefect UI  port 4200
+```
+
+list process running on different port
+```bash 
+lsof -i4 #ip4
+kill [pid_process] #kill the process
+```
+
+Deployment in prefect - trigger and schedule the flow run - create a yaml file for the flow
+```bash
+prefect deployment build ./param_load_data_gcs.py:parent_flow -n "parametrised etl"
+```
+add the params to param section
+```yaml
+parameters: {'color':'yellow','year':2022,'month':[1,2,3]}
+```
+to run the deployment there shoul be an agent assign to it
+```bash
+perefct agent start -q 'default'
 ```
