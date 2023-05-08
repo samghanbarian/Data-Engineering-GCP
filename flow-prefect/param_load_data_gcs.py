@@ -46,7 +46,5 @@ def parent_flow(color,year,month) -> None:
         load_data_gcs(color,year,month)
 
 if __name__ == "__main__":
-    color = "yellow"
-    year = 2022
-    month = [1,2,3]
+
     parent_flow(color,year,month)
