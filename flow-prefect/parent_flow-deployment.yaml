@@ -1,0 +1,49 @@
+###
+### A complete description of a Prefect Deployment for flow 'parent-flow'
+###
+name: parameterised etl
+description: parent flow to set the params
+version: 251c05e8f4a9224526b4a768e2518388
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {'color':'green','year':2022,'month':[1,2,3]}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: parent-flow
+manifest_path: null
+storage: null
+path: /home/sam/Data-Engineering-GCP/flow
+entrypoint: param_load_data_gcs.py:parent_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    color:
+      title: color
+      position: 0
+    year:
+      title: year
+      position: 1
+    month:
+      title: month
+      position: 2
+  required:
+  - color
+  - year
+  - month
+  definitions: null
