@@ -2,9 +2,9 @@ import pandas as pd
 from pathlib import Path
 
 
-from time import time
-from datetime import timedelta
-# import pyarrow.parquet as pq
+# from time import time
+# from datetime import timedelta
+#  import pyarrow.parquet as pq
 
 from prefect import flow,task
 from prefect_gcp.cloud_storage import GcsBucket
@@ -38,12 +38,13 @@ def write_to_bq(df:pd.DataFrame,color:str,year:int) -> None:
 @flow()
 def load_data_bq() -> None:
     """ main etl flow to load data in Bigquery"""
-    color = "yellow"
+    color = ["yellow","green"]
     year = 2022
     month = 1
-    path = extract_from_gcs(color,year,month)
-    df =convert_to_df(path)
-    write_to_bq(df,color,year)
+    for color in color:
+        path = extract_from_gcs(color,year,month)
+        df =convert_to_df(path)
+        write_to_bq(df,color,year)
 
 
 if __name__ == "__main__":

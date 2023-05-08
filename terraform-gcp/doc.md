@@ -131,7 +131,7 @@ add the params to param section
 ```yaml
 parameters: {'color':'yellow','year':2022,'month':[1,2,3]}
 ```
-to run the deployment there shoul be an agent assign to it
+to run the deployment there should be an agent assign to it
 ```bash
-perefct agent start -q 'default'
+perefct agent start --work-queue 'default'
 ```
