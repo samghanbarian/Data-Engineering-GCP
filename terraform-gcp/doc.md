@@ -135,3 +135,7 @@ to run the deployment there should be an agent assign to it
 ```bash
 perefct agent start --work-queue 'default'
 ```
+
+define schedulin when defining deployment
+```bash
+prefect deployment 

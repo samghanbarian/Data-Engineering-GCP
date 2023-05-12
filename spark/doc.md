@@ -36,7 +36,10 @@ val data = 1 to 1000
 val distData = sc.parallelized(data)
 distData.filter(_ < 10).collect()
 ```
-export python path
+add pythonpath to run pyspark
 ```bash
 export PYTHONPATH="${SPARK_HOME}/python:${PYTHONPATH}"
-export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:${PYTHONPATH}
+export PYTHONPATH="${SPARK_HOME}/python/lib/py4j-0.10.9.5-src.zip:${PYTHONPATH}"
+```
+
+
