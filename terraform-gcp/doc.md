@@ -136,6 +136,6 @@ to run the deployment there should be an agent assign to it
 perefct agent start --work-queue 'default'
 ```
 
-define schedulin when defining deployment
+define scheduling when defining deployment
 ```bash
-prefect deployment 
+prefect deployment build param_load_ygtaxi.py:parent_flow_yg -n green-yellow-taxi --cron "0 0 * * *" -a
