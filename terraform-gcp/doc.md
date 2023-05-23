@@ -139,3 +139,18 @@ perefct agent start --work-queue 'default'
 define scheduling when defining deployment
 ```bash
 prefect deployment build param_load_ygtaxi.py:parent_flow_yg -n green-yellow-taxi --cron "0 0 * * *" -a
+
+wrapping etl in a container and running flows in container
+in the Dockerfile
+```bash
+FROM prefecthq/prefect:2.7.7-python3.9
+
+COPY docker-requirements.txt .
+
+RUN pip install -r docker-requirements.txt --trusted-host pypi.python.org --no-cache-dir
+
+COPY /flow /opt/prefect/flows
+RUN mkdir /opt/prefect/data
+```
+
+if there is an error with stat just make a new directory 'dockerfile" and copy the Dokerfile in and buil the image there
